@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot name="autocar">
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+   <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+
+  <link name="car_world">
+  </link>
+
+  <link name="body">
+    <visual>
+      <geometry>
+        <box size="4 1 2"/>
+      </geometry>
+      <material name="blue"/>
+      <origin xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="world_to_car" type="fixed">
+    <parent link="car_world"/>
+    <child link="body"/>
+    <origin xyz="0 0 1.5" rpy="0 0 1"/>
+  </joint>
+
+  <link name="front_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="1.2" radius="0.5"/>
+      </geometry>
+      <material name="red"/>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <link name="rear_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="1.2" radius="0.5"/>
+      </geometry>
+      <material name="green"/>
+      <origin rpy="1.5708 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="body_to_front_wheel" type="fixed">
+    <parent link="body"/>
+    <child link="front_wheel"/>
+    <origin xyz="1.5 0 -1" />
+  </joint>
+
+  <joint name="body_to_rear_wheel" type="fixed">
+    <parent link="body"/>
+    <child link="rear_wheel"/>
+    <origin xyz="-1.5 0 -1"/>
+  </joint>
+</robot>
